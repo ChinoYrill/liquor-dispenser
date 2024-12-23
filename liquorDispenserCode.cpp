@@ -1,5 +1,5 @@
 #include <Wire.h> 
-#include <Adafruit_LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 
 // Pin assignments
 const int trigPin = 9;
@@ -11,15 +11,15 @@ const int button3Pin = 4;
 
 // Variables
 int motorDuration = 0; // Default 1 second
-int durationOptions[] = {4000, 1000, 2000, 3000}; // 1s, 2s, 3s, 4s
+int durationOptions[] = {4000, 1000, 2000, 3000}; // 4s, 1s, 2s, 3s
 int currentDurationIndex = 0;
 bool objectDetected = false;
 unsigned long lastButtonPress1 = 0;
 unsigned long lastButtonPress2 = 0;
 unsigned long lastButtonPress3 = 0;
 
-// LCD display setup
-Adafruit_LiquidCrystal lcd(0);
+// Initialize the LCD (address 0x27, 16 columns, 2 rows)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup() {
   // Set up pins
